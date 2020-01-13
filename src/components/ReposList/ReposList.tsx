@@ -1,7 +1,6 @@
 import React from 'react';
-import { List } from 'antd';
-import { Repo } from '../../types';
-import { Pagination } from 'antd';
+import { List, Pagination  } from 'antd';
+import { Repo } from '../../utils/common-types';
 
 type Props = {
   repos: Repo[],

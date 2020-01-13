@@ -3,7 +3,7 @@ import { Layout } from 'antd';
 import Search from '../SearchInput/SearchInput';
 import List from '../ReposList/ReposList';
 import './SearchRepos.css';
-import { Repo } from '../../types';
+import { Repo } from '../../utils/common-types';
 
 type Props = {
   query: string,

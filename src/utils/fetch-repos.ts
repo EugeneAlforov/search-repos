@@ -1,19 +1,23 @@
-import axios from 'axios';
-import { Repo } from '../types';
+import axios, { AxiosResponse } from 'axios';
+import { Repo } from './common-types';
 const CancelToken = axios.CancelToken;
 
 type CacheResult = {
   query: string, page: number, result: any
 }
 
+type Response = 'CANCELLED' | AxiosResponse<{ items: Repo[], total_count: number }>
+
 export const CANCELLED_EVENT_CODE = 'CANCELLED';
 const CACHE_LIMIT = 5;
+
+
 
 export default function createFetchRepos() {
   let cancelPrevious: any;
   const cachedResults: CacheResult[] = [];
 
-  return async function (query: string, page: number): Promise<{ data: { items: Repo[] } } | any> {
+  return async function (query: string, page: number): Promise<Response> {
     if (typeof cancelPrevious === 'function') {
       cancelPrevious();
     }
